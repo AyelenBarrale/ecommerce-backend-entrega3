@@ -1,4 +1,5 @@
 import { logger } from "../utils/logger.util.js";
+import {sendMailNewRegistro } from "../utils/mailer.util.js"
 import * as userService from "../services/login.service.js";
 
 export async function renderSignUpForm(req, res) {
@@ -18,6 +19,7 @@ export async function signup(req, res) {
     const usuario = await userService.signup(body);
     req.session.user = usuario;
     req.session.admin = true;
+    sendMailNewRegistro()
     res.redirect("welcome");
   } catch (error) {
     res.status(400).send(error.message);
