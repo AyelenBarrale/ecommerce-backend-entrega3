@@ -1,0 +1,33 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+.navbar-container {
+  display: flex;
+  background-color: rgb(173, 171, 171);
+}
+
+tr {
+  text-align: center;
+}
+th {
+  background-color: rgb(212, 209, 209);
+  text-align: center;
+  align-content: center;
+  width: 12rem;
+}
+td {
+  padding: 1rem 0;
+  background-color: rgb(243, 247, 243);
+}
+img {
+  width: 15%;
+}

@@ -1,0 +1,17 @@
+<div class="navbar-container">
+    {{>navbar}}
+</div>
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <div class="card mt-4 text-center">
+      <div class="card-header">
+        <h1 class="h4">
+          ¡Bienvenido {{usuario.firstName}} !
+        </h1>
+        <form action="/logout" method="POST">
+          <button type="submit" class="btn btn-danger btn-block btn-sm">LogOut</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="navbar-container">
+    {{>navbar}}
+</div>
+<div>
+    <table class="tabla-container">
+        <tr>
+            <th>Name</th>
+            <th>E mail</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Avatar</th>
+            
+        </tr>
+        {{#if usuario}}
+                <tr>
+                    <td>{{usuario.firstName}} {{usuario.lastName}} </td>
+                    <td>{{usuario.email}} </td>
+                    <td>{{usuario.username}} </td>
+                    <td>{{usuario.password}} </td>
+                    <td>{{usuario.direction}} </td>
+                    <td>{{usuario.age}} </td>
+                    <td>{{usuario.phone}} </td>
+                    <td><img src="{{usuario.photo}}" alt=""></td> 
+                </tr>
+        {{else}}
+            <p>Aún no hay datos cargados</p>
+        {{/if}}
+    </table>
+</div>
