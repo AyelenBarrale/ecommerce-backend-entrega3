@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 
-const UserSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+
+const UserSchema = new Schema(
   {
     username: {
       type: String,
@@ -40,6 +42,14 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    rol: {
+      type: String,
+      default: "user"
+    },
+    cart: {
+      type: Schema.Types.ObjectId,
+      ref: "Carrito"
+    }
   },
   {
     timestamps: true,

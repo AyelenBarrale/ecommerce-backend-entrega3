@@ -5,8 +5,8 @@ import {
   signup,
   renderSignInForm,
   signin,
-  renderWelcome,
-  renderLogout,
+  /* renderWelcome,
+  renderLogout, */
   logout,
 } from "../controllers/login.controller.js";
 
@@ -21,11 +21,11 @@ router.post("/welcome", signup);
 
 router.get("/signin", renderSignInForm);
 
-router.get("/welcome", renderWelcome);
+//router.get("/welcome", renderWelcome);
 
 router.post("/welcome", signin);
 
-router.get("/logout", renderLogout);
+//router.get("/logout", renderLogout);
 
 router.post("/logout", logout);
 
