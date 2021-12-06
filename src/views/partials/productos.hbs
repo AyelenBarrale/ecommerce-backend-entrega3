@@ -1,23 +1,44 @@
-<div>
-    <table class="tabla-container">
+<div style="display:flex">
+{{!--     <table class="tabla-container">
         <tr>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Imagen</th>
             <th>Stock</th>
+            <th>Imagen</th>
         </tr>
         {{#if productos}}
             {{#each productos}}
                 <tr>
                     <td>{{this.nombre}} </td>
                     <td>{{this.precio}} </td>
-                    <td><img src={{this.foto}} alt=""></td>
-                    <td{{this.stock}} </td>
-                    
+                    <td>{{this.stock}}</td>
+                    <td><img src={{this.foto}} alt="" style="width:20%"></td>
+                    <td><button>Add to cart</button></td>
                 </tr>
             {{/each}}
         {{else}}
             <p>No hay productos cargados</p>
         {{/if}}
-    </table>
+    </table> --}}
+
+
+ {{#if productos}}
+            {{#each productos}}
+                <div class="card" style="width: 18rem;">
+                    <img src={{this.foto}} class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{this.nombre}}</h5>
+                        <p class="card-text">Precio: {{this.precio}}</p>
+                        <p class="card-text">Stock: {{this.stock}}</p>
+                        <form action="/carrito" method="POST">
+                            <button class="btn btn-primary">Add to cart</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            {{/each}}
+        {{else}}
+            <p>No hay productos cargados</p>
+        {{/if}}
+   
 </div>

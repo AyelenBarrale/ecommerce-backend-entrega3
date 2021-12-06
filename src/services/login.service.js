@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import { sendEmailNewUser } from "../services/mail.service.js";
 
 export async function signup(data) {
   try {
@@ -6,6 +7,7 @@ export async function signup(data) {
     if (!usuario) {
       const newUser = new User(data);
       await newUser.save();
+      sendEmailNewUser(newUser);
     } else {
       return usuario;
     }

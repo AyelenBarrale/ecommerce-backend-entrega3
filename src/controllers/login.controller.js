@@ -1,6 +1,5 @@
 import { logger } from "../utils/logger.util.js";
 import * as userService from "../services/login.service.js";
-import { sendEmailNewUser } from "../services/mail.service.js";
 
 export async function renderSignUpForm(req, res) {
   try {
@@ -19,10 +18,10 @@ export async function signup(req, res) {
     const usuario = await userService.signup(body);
     req.session.user = usuario;
     req.session.admin = true;
-    sendEmailNewUser(body);
     res.render("welcome", { usuario: req.session.user });
   } catch (error) {
-    res.status(400).send(error.message);
+    logger.info("Credenciales no válidas");
+    res.render("failLog", {});
   }
 }
 
@@ -44,14 +43,15 @@ export async function signin(req, res) {
       req.session.admin = true;
       res.render("welcome", { usuario: req.session.user });
     } else {
-      res.status(400).send("usuario no registrado")
+      logger.info("Credenciales no válidas");
+      res.render("failLog", {});
     }
   } catch (error) {
     res.status(400).send(error.message);
   }
 }
 
-export async function failLog(req, res) {
+/* export async function failLog(req, res) {
   try {
     logger.info("Credenciales no válidas");
     res.render("failLog", {});
@@ -59,7 +59,7 @@ export async function failLog(req, res) {
     logger.error("error en logueo");
     res.status(400).send(error.message);
   }
-}
+} */
 
 export async function renderWelcome(req, res) {
   try {
@@ -93,6 +93,15 @@ export async function logout(req, res) {
     });
   } catch (error) {
     logger.error("no se pudo ejecutar el deslogueo");
+    res.status(400).send(error.message);
+  }
+}
+
+export async function returnHome(req, res) {
+  try {
+    res.render("/");
+  } catch (error) {
+    logger.error(error.message);
     res.status(400).send(error.message);
   }
 }

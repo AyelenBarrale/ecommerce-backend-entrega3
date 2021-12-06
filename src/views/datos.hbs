@@ -2,31 +2,20 @@
     {{>navbar}}
 </div>
 <div>
-    <table class="tabla-container">
-        <tr>
-            <th>Name</th>
-            <th>E mail</th>
-            <th>Username</th>
-            <th>Password</th>
-            <th>Address</th>
-            <th>Age</th>
-            <th>Phone</th>
-            <th>Avatar</th>
-            
-        </tr>
-        {{#if usuario}}
-                <tr>
-                    <td>{{usuario.firstName}} {{usuario.lastName}} </td>
-                    <td>{{usuario.email}} </td>
-                    <td>{{usuario.username}} </td>
-                    <td>{{usuario.password}} </td>
-                    <td>{{usuario.direction}} </td>
-                    <td>{{usuario.age}} </td>
-                    <td>{{usuario.phone}} </td>
-                    <td><img src="{{usuario.photo}}" alt=""></td> 
-                </tr>
-        {{else}}
+    {{#if usuario}}
+        <div class="card" style="width: 18rem;">
+            <img src={{usuario.photo}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{usuario.firstName}} {{usuario.lastName}}</h5>
+                <p class="card-text">E mail: {{usuario.email}}</p>
+                <p class="card-text">Username: {{usuario.username}}</p>
+                <p class="card-text">Password: {{usuario.password}}</p>
+                <p class="card-text">Address: {{usuario.direction}}</p>
+                <p class="card-text">Age: {{usuario.age}}</p>
+                <p class="card-text">Phone: {{usuario.phone}}</p>
+            </div>
+        </div>
+    {{else}}
             <p>Aún no hay datos cargados</p>
-        {{/if}}
-    </table>
+    {{/if}}
 </div>

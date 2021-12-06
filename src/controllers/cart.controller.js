@@ -16,7 +16,7 @@ export async function createCart(req, res) {
 export async function getCart(req, res) {
   const { id } = req.params;
   try {
-    const carrito = await Carrito.findById(id);
+    const carrito = await Carrito.findById(id).populate("productos");
     res.status(200).json({ carrito });
   } catch (error) {
     res.status(400).send(error.message);

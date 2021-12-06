@@ -22,12 +22,17 @@ th {
   background-color: rgb(212, 209, 209);
   text-align: center;
   align-content: center;
-  width: 12rem;
+  padding: 1rem;
 }
 td {
-  padding: 1rem 0;
+  padding: 1rem;
   background-color: rgb(243, 247, 243);
 }
-img {
-  width: 15%;
+
+.btn .btn-primary .btn-block {
+  margin-top: 1rem;
+}
+
+.form-control {
+  margin-bottom: 0.7rem;
 }
