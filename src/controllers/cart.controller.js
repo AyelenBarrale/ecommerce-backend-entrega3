@@ -1,5 +1,6 @@
 import Carrito from "../models/carts.model.js";
 import Product from "../models/prod.model.js";
+import User from "../models/user.model.js";
 import { logger } from "../utils/logger.util.js";
 
 export async function createCart(req, res) {
@@ -13,7 +14,7 @@ export async function createCart(req, res) {
   }
 }
 
-export async function getCart(req, res) {
+/* export async function getCart(req, res) {
   const { id } = req.params;
   try {
     const carrito = await Carrito.findById(id).populate("productos");
@@ -21,7 +22,17 @@ export async function getCart(req, res) {
   } catch (error) {
     res.status(400).send(error.message);
   }
+} */
+export async function getCart(req, res) {
+  try {
+    const carrito = await User.find().populate("Carrito");
+    res.render("carrito", {carrito,
+    })
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
 }
+
 
 export async function deleteCart(req, res) {
   const { id } = req.params;

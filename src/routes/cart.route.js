@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 
-router.get("/carrito/:id/productos", getCart);
+router.get("/carrito/", getCart);
 router.post("/carrito/create", createCart);
 router.delete("/carrito/:id", deleteCart);
 router.post("/carrito/:id/productos", postProdsCart);

@@ -1,0 +1,21 @@
+<div>
+    <table class="tabla-container">
+        {{#if carrito}}
+            {{#each carrito.productos}}
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Imagen</th>
+                </tr>
+                <tr>
+                    <td>{{this.title}} </td>
+                    <td>{{this.price}} </td>
+                    <td><img src="{{this.thumbnail}}" alt=""></td> 
+                    
+                </tr>
+            {{/each}}
+        {{else}}
+            <p>No hay productos cargados</p>
+        {{/if}}
+    </table>
+</div>
