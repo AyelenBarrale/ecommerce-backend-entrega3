@@ -1,4 +1,5 @@
 import Product from "../models/prod.model.js";
+import { logger } from "../utils/logger.util.js";
 
 export async function createProduct(req, res) {
   const { nombre, codigo, descripcion, precio, foto, stock } = req.body;
@@ -12,7 +13,8 @@ export async function createProduct(req, res) {
       stock,
     });
     await newProduct.save();
-    res.status(200).send("Producto creado");
+    logger.info("Producto creado");
+    res.redirect("/productList");
   } catch (error) {
     res.status(400).send(error.message);
   }

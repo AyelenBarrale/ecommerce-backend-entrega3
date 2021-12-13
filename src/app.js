@@ -4,7 +4,9 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import MongoStore from "connect-mongo";
 import session from "express-session";
-import handlebars from "express-handlebars";
+import Handlebars from "handlebars"
+import hbs from "express-handlebars";
+import { allowInsecurePrototypeAccess} from "@handlebars/allow-prototype-access"
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
@@ -63,13 +65,14 @@ const __dirname = dirname(__filename);
 
 app.engine(
   "hbs",
-  handlebars({
+  hbs({
     extname: ".hbs",
     defaultLayout: "index.hbs",
     // eslint-disable-next-line no-undef
     layoutsDir: __dirname + "/views/layouts",
     // eslint-disable-next-line no-undef
     partialsDir: __dirname + "/views/partials",
+    handlebars: allowInsecurePrototypeAccess(Handlebars)
   })
 );
 

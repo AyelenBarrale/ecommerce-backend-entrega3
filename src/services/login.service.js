@@ -18,7 +18,7 @@ export async function signup(data) {
 
 export async function signin(data) {
   try {
-    const usuario = await User.findOne(data);
+    usuario = await User.findOne(data);
     return usuario;
   } catch (error) {
     throw new Error(error);

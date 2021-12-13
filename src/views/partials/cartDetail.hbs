@@ -10,10 +10,13 @@
                 <tr>
                     <td>{{this.title}} </td>
                     <td>{{this.price}} </td>
-                    <td><img src="{{this.thumbnail}}" alt=""></td> 
+                    <td><img src={{this.thumbnail}} alt=""></td> 
                     
                 </tr>
             {{/each}}
+            <form action="/thanks" method="POST">
+                <button>Hacer Pedido</button>
+            </form>
         {{else}}
             <p>No hay productos cargados</p>
         {{/if}}
