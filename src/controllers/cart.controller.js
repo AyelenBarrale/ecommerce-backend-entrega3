@@ -1,13 +1,18 @@
 import Product from "../models/prod.model.js";
+import User from "../models/user.model.js"
 import { logger } from "../utils/logger.util.js";
 
 import { createCarrito } from "../services/cart.services.js"
 
 export async function addToCart(req, res) {
+  const { id } = req.params;
   const prodId = req.body.id;
   try {
     const producto = await Product.findById(prodId);
-    await req.user.addToCart(producto)
+    const user = await User.findById(id)
+    logger.info(user)
+    user.addToCart(producto)
+    logger.info(user.cart)
     res.redirect("/productos");
   } catch (error) {
     logger.error(error.message)

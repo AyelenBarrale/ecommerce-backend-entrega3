@@ -16,11 +16,11 @@ router.post("/delete-cart", deleteInCart) */
 
 
 
+router.post("/add-to-cart", addToCart);
 
 router.get("/carrito/:id/productos", getCart);
 router.post("/carrito", createCart);
 router.delete("/carrito/:id", deleteCart);
-router.post("/add-to-cart", addToCart);
 router.delete("/carrito/:id/productos/:id_prod", deleteProductCart);
 
 export default router;
