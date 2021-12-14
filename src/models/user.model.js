@@ -1,4 +1,3 @@
-import Product from "../models/prod.model.js";
 import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
@@ -75,7 +74,7 @@ const UserSchema = new Schema(
 );
 
 
-UserSchema.methods.addToCart = async function (product) {
+/* UserSchema.methods.addToCart = async function (product) {
   let cart = this.cart
 
 
@@ -99,16 +98,9 @@ UserSchema.methods.addToCart = async function (product) {
 
     }
   }
+}; */
 
-  console.log(this.cart)
-    
-    
-
-    
-  
-};
-
-UserSchema.methods.removeFromCart = function (productId) {
+/* UserSchema.methods.removeFromCart = function (productId) {
   const cart = this.cart;
   const isExisting = cart.productos.findIndex(
     (objInProductos) =>
@@ -119,6 +111,6 @@ UserSchema.methods.removeFromCart = function (productId) {
     cart.productos.splice(isExisting, 1);
     return cart.save();
   }
-};
+};*/
 
-export default mongoose.model("User", UserSchema);
+export default mongoose.model("User", UserSchema); 

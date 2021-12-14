@@ -5,9 +5,9 @@ import { renderCart, renderDatos, renderFormProds,  } from "../controllers/pages
 const router = Router();
 
 
-router.get("/datos", renderDatos)
-router.get("/upload", /* isAdmin, */ renderFormProds);
-router.get("/carrito", renderCart)
+router.get("/datos/", renderDatos)
+router.get("/upload/", /* isAdmin, */ renderFormProds);
+router.get("/carrito/:id/productos", renderCart)
 
 
 export default router;

@@ -7,7 +7,7 @@
                         <h5 class="card-title">{{this.nombre}}</h5>
                         <p class="card-text">Precio: {{this.precio}}</p>
                         <p class="card-text">Stock: {{this.stock}}</p>
-                        <form action="/add-to-cart" method="POST">
+                        <form action="/carrito/{{usuario._id}}/productos" method="POST">
                             <button class="btn btn-primary">Add to cart</button>
                         </form>
                         
