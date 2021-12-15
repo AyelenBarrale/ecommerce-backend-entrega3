@@ -53,15 +53,6 @@ export async function signin(req, res) {
   }
 }
 
-/* export async function failLog(req, res) {
-  try {
-    logger.info("Credenciales no válidas");
-    res.render("failLog", {});
-  } catch (error) {
-    logger.error("error en logueo");
-    res.status(400).send(error.message);
-  }
-} */
 
 export async function renderWelcome(req, res) {
   try {

@@ -2,15 +2,16 @@ import Product from "../models/prod.model.js";
 import Carrito from "../models/carts.model.js";
 import { logger } from "../utils/logger.util.js";
 
+
 import { sendEmailToUser } from "../services/mail.service.js";
 
 /* --------------- TEST WITH CART AND USER INDEPENDENTS MODELS -------------- */
 
 export async function getCarrito(req, res) {
-  const {id} = req.params;
+  const { id } = req.params;
   try {
     const carrito = await Carrito.findById(id);
-    logger.info(carrito)
+    logger.info(carrito);
     res.status(200).json({ carrito });
   } catch (error) {
     res.status(400).send(error.message);
@@ -72,15 +73,16 @@ export async function removeFromCarrito(req, res) {
 export async function sendPedido(req, res) {
   const { id } = req.params;
 
-  const populateQuery = [{path: "userId", select: "email username"}, {path: "productos", select: "nombre precio"}]
-
-
+  const populate = { path: "userId", select: "email username" };
+  
   try {
-    const carrito = await Carrito.findById(id).populate(populateQuery)
-    console.log(carrito);
+    const carrito = await Carrito.findById(id)
+      .populate(populate)
+      .populate({path: "productos", populate: {path: "productId", select: "nombre precio"}}).exec()
+    //console.log(carrito);
 
-    sendEmailToUser({carrito})
-    res.status(200).send(`orden enviada al correo: ${carrito.userId.email} `)
+    sendEmailToUser(carrito);
+    res.status(200).send(`orden enviada al correo: ${carrito.userId.email} `);
   } catch (error) {
     res.status(400).send(error.message);
   }

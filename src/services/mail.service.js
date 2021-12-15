@@ -30,27 +30,28 @@ export async function sendEmailNewUser(data) {
 
 export async function sendEmailToUser(data) {
 
-  /* const populate = {path: "userId", select: "email username"}
-  const populateProds = {path: "productos", select: "nombre precio"} */
+  const idCart = data
+  //console.log(idCart);
 
-  const populateQuery = [{path: "userId", select: "email username"}, {path: "productos", select: "nombre precio"}]
+  const populate = {path: "userId", select: "email username"}
+  const populateProds = {path: "productos.productId", select: "nombre precio"}
+
 
   try {
-    let carrito = await Carrito.findById(data).populate(populateQuery)
+    let carrito = await Carrito.findById(idCart).populate(populate).populate(populateProds).exec()
 
     let list = carrito.productos
-    console.log(list);
+    //console.log(list);
     let arrayItems = "";
     let n;
     for(n in list ) {
+      /* arrayItems += "<li>" + list[n].nombre + "- $" + list[n].precio + "</li>" */
       arrayItems += "<li>" + list[n] + "</li>"
     }
 
-
-
     const mailOptions = {
       from: process.env.AUTH_USER,
-      to: carrito.userId.email,
+      to: process.env.AUTH_USER,
       subject: `Nuevo pedido de ${carrito.userId.username}, correo: ${carrito.userId.email} `,
       html: `
             <h2>Listado de productos</h2>
@@ -65,3 +66,5 @@ export async function sendEmailToUser(data) {
     logger.error(error.message);
   }
 }
+
+//sendEmailToUser("61b9b5d5cdb987b1daf9b8cb")
