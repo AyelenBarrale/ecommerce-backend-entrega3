@@ -33,7 +33,7 @@ export async function sendEmailToUser(data) {
   const idCart = data
   //console.log(idCart);
 
-  const populate = {path: "userId", select: "email username"}
+  const populate = {path: "userId", select: "email username phone"}
   const populateProds = {path: "productos.productId", select: "nombre precio"}
 
 

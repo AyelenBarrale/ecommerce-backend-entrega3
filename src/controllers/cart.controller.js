@@ -4,6 +4,7 @@ import { logger } from "../utils/logger.util.js";
 
 
 import { sendEmailToUser } from "../services/mail.service.js";
+import { sendWS, sendSMS } from "../utils/twilio.util.js";
 
 /* --------------- TEST WITH CART AND USER INDEPENDENTS MODELS -------------- */
 
@@ -73,16 +74,19 @@ export async function removeFromCarrito(req, res) {
 export async function sendPedido(req, res) {
   const { id } = req.params;
 
-  const populate = { path: "userId", select: "email username" };
+  const populate = { path: "userId", select: "email username phone" };
   
   try {
     const carrito = await Carrito.findById(id)
       .populate(populate)
       .populate({path: "productos", populate: {path: "productId", select: "nombre precio"}}).exec()
-    //console.log(carrito);
+    //logger.info(carrito);
 
+    sendWS(carrito)
     sendEmailToUser(carrito);
-    res.status(200).send(`orden enviada al correo: ${carrito.userId.email} `);
+    sendSMS(carrito)
+    
+    res.status(200).send(`orden enviada al correo: ${carrito.userId.email} e informada al número: ${carrito.userId.phone} `);
   } catch (error) {
     res.status(400).send(error.message);
   }
