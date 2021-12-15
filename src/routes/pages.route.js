@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/datos/", renderDatos)
 router.get("/upload/", /* isAdmin, */ renderFormProds);
-router.get("/carrito/:id/productos", renderCart)
+router.get("/carrito", renderCart)
 
 
 export default router;

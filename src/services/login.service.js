@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Carrito from "../models/carts.model.js"
 import { sendEmailNewUser } from "../services/mail.service.js";
 
 export async function signup(data) {
@@ -8,6 +9,11 @@ export async function signup(data) {
       const newUser = new User(data);
       await newUser.save();
       sendEmailNewUser(newUser);
+
+      //CREATE CART BASED ON USER ID
+      const newCarrito = new Carrito({userId: newUser.id});
+      await newCarrito.save();
+
     } else {
       return usuario;
     }

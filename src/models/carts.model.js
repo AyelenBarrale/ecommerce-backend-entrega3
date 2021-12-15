@@ -14,16 +14,16 @@ const carritoSchema = new Schema(
         productId: {
           type: Schema.Types.ObjectId,
           ref: "Product" ,
-          qty: {
+          /* qty: {
             type: Number,
-          },
+          }, */
         },
       },
     ],
-    totalPrice: {
+    /* totalPrice: {
       type: Number,
       require: true
-    },
+    }, */
     modifiedOn: {
       type: Date,
       default: Date.now,

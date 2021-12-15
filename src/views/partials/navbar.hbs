@@ -2,7 +2,8 @@
         <form action="/datos" method="GET">
           <button type="submit" class="btn ">Mis Datos</button>
         </form>
-        <form action="/carrito/{{usuario._id}}/productos" method="GET">
+        {{!-- TODO: CAMBIAR CART ID POR VARIABLE -- /carrito/61b9b5d5cdb987b1daf9b8cb/productos --}}
+        <form action="/carrito" method="GET">
             <button type="submit" class="btn ">Carrito</button>
         </form>
         <form action="/productos" method="GET">

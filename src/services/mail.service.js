@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import Carrito from "../models/carts.model.js"
 import { logger } from "../utils/logger.util.js";
 import { transporterGmail } from "../utils/mailer.util.js";
 
@@ -28,16 +29,33 @@ export async function sendEmailNewUser(data) {
 
 
 export async function sendEmailToUser(data) {
+
+  /* const populate = {path: "userId", select: "email username"}
+  const populateProds = {path: "productos", select: "nombre precio"} */
+
+  const populateQuery = [{path: "userId", select: "email username"}, {path: "productos", select: "nombre precio"}]
+
   try {
-    let usuario = await User.findOne(data);
+    let carrito = await Carrito.findById(data).populate(populateQuery)
+
+    let list = carrito.productos
+    console.log(list);
+    let arrayItems = "";
+    let n;
+    for(n in list ) {
+      arrayItems += "<li>" + list[n] + "</li>"
+    }
+
+
+
     const mailOptions = {
       from: process.env.AUTH_USER,
-      to: process.env.AUTH_USER,
-      subject: `Nuevo pedido de ${usuario.username}, correo: ${usuario.email} `,
+      to: carrito.userId.email,
+      subject: `Nuevo pedido de ${carrito.userId.username}, correo: ${carrito.userId.email} `,
       html: `
             <h2>Listado de productos</h2>
             <br></br>
-            <p>username: ${usuario.cart.productos} </p>
+            <ul> ${arrayItems} </ul>
           `,
     };
     const response = await transporterGmail.sendMail(mailOptions);

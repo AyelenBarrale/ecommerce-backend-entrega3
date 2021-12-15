@@ -17,8 +17,8 @@ export async function signup(req, res) {
   try {
     const usuario = await userService.signup(body);
     req.session.user = usuario;
-    logger.info(req.session)
-    logger.info(req.session.user)
+    //logger.info(req.session)
+    //logger.info(req.session.user)
     req.session.admin = true;
     res.render("welcome", { usuario: req.session.user });
   } catch (error) {
